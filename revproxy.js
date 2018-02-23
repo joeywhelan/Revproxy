@@ -27,9 +27,7 @@ proxy.on('error', function (err, req, res) {
 	  res.end('Error: ' + err.message);
 });
 
-app.get("/", function(req, res) {
-	res.sendFile(path.join(__dirname + '/chat.html'));
-});
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.all("/genesys/*", function(req, res) {
 	proxy.web(req, res, {target : gms});
